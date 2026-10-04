@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b1a">
+<title>Rockstar Tutor – Learn English Simply</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎸</text></svg>">
+<style>
+:root{--t:#eef2ff;--m:#a9b4d6;--a:#7c5cff;--b:#22d3ee;--c:#ff5cae}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--t);background:#070b1a;min-height:100dvh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(70px);opacity:.5;animation:fl 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){background:var(--a);top:-15%;left:-10%}
+.bg i:nth-child(2){background:var(--b);bottom:-20%;right:-10%;animation-delay:-6s}
+.bg i:nth-child(3){background:var(--c);top:35%;left:40%;width:34vmax;height:34vmax;opacity:.32;animation-delay:-12s}
+@keyframes fl{to{transform:translate(8vmax,-6vmax) scale(1.2)}}
+.glass{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.17),rgba(255,255,255,.05));backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(255,255,255,.2);border-radius:26px;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -8px 20px rgba(255,255,255,.04),0 12px 40px rgba(0,0,0,.35);overflow:hidden}
+.glass::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.16) 50%,transparent 65%);transform:translateX(-120%);transition:transform .9s;pointer-events:none}
+.glass:hover::after{transform:translateX(120%)}
+.app{display:grid;grid-template-columns:92px minmax(0,1fr);gap:16px;max-width:1080px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px 24px}
+.nav{position:sticky;top:16px;align-self:start;display:flex;flex-direction:column;gap:6px;padding:8px}
+.nav button{position:relative;z-index:1;background:none;border:0;color:var(--m);padding:10px 4px;border-radius:20px;cursor:pointer;display:grid;justify-items:center;font:inherit;transition:color .3s,transform .2s}
+.nav button span{font-size:22px}.nav small{font-size:11px}
+.nav button.on{color:#fff}.nav button:active{transform:scale(.9)}
+.pill{position:absolute;left:0;top:0;border-radius:20px;background:linear-gradient(135deg,rgba(124,92,255,.7),rgba(34,211,238,.45));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 6px 20px rgba(124,92,255,.45);transition:transform .55s cubic-bezier(.34,1.56,.64,1),width .4s,height .4s}
+.top{padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.logo{font-size:36px;filter:drop-shadow(0 4px 12px rgba(124,92,255,.8))}
+h1{margin:0;font-size:clamp(22px,4vw,30px);background:linear-gradient(90deg,#fff,#b7a8ff,#7ee8fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top p{margin:2px 0 0;color:var(--m);font-size:14px}
+.view{display:none}.view.on{display:block;animation:in .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.card{padding:20px;margin-bottom:16px}.card h2,.card h3{margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:16px}
+.tile{cursor:pointer;text-align:left;color:inherit;font:inherit;padding:18px;display:block;width:100%;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.tile:hover{transform:translateY(-6px) scale(1.02)}.tile:active{transform:scale(.95)}
+.tile span{font-size:30px}.tile b{display:block;font-size:17px}.tile small{color:var(--m)}
+.btn,.chip,.ic{font:inherit;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,.25);transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .3s}
+.btn{padding:11px 20px;border-radius:16px;font-weight:600;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 24px rgba(124,92,255,.4)}
+.chip{padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.1);margin:4px 4px 0 0}
+.chip.on{background:linear-gradient(135deg,rgba(124,92,255,.65),rgba(34,211,238,.4))}
+.chip.ok{background:rgba(110,231,168,.35)}.chip.bad{background:rgba(255,122,144,.35)}
+.ic{border-radius:12px;background:rgba(255,255,255,.12);padding:4px 9px}
+.btn:hover,.chip:hover,.ic:hover{transform:translateY(-2px)}.btn:active,.chip:active,.ic:active{transform:scale(.93)}
+input,textarea{width:100%;font:inherit;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:12px 14px;outline:0;transition:box-shadow .3s,border-color .3s}
+input:focus,textarea:focus,button:focus-visible{border-color:var(--b);box-shadow:0 0 0 4px rgba(34,211,238,.28);outline:0}
+::placeholder{color:#8f9bc0}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row input{flex:1;min-width:150px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.stats span{padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);font-size:14px}
+.track{height:10px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:14px}
+.track i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--b),var(--c));transition:width .8s cubic-bezier(.34,1.56,.64,1)}
+.chat{height:min(54dvh,460px);overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px;scroll-behavior:smooth}
+.m{max-width:86%;padding:10px 14px;border-radius:20px;white-space:pre-wrap;animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
+.m.b,.m.typ{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);align-self:flex-start;border-bottom-left-radius:6px}
+.m.u{background:linear-gradient(135deg,var(--a),var(--b));align-self:flex-end;border-bottom-right-radius:6px}
+.typ{animation:pop .4s,bl 1s infinite}@keyframes bl{50%{opacity:.35}}
+@keyframes pop{from{opacity:0;transform:scale(.8) translateY(10px)}}
+.rec{animation:rec 1s infinite}@keyframes rec{0%,100%{box-shadow:0 0 0 0 rgba(255,92,174,.8)}50%{box-shadow:0 0 0 12px transparent}}
+#vm.on{background:linear-gradient(135deg,var(--c),var(--a))}
+.ex{color:#cfe9ff}.opts{margin-top:6px}details summary{cursor:pointer;color:var(--b);margin-top:6px}
+.iss{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}.iss small{display:block;color:var(--m)}
+.okt{color:#6ee7a8}.bad{color:#ff7a90}s{color:#ff7a90}
+.big{font-size:clamp(22px,5vw,32px);font-weight:700;margin:6px 0}
+#toast{position:fixed;left:50%;top:max(16px,env(safe-area-inset-top));transform:translate(-50%,-120px);padding:10px 18px;border-radius:999px;z-index:50;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+#toast.on{transform:translate(-50%,0)}
+footer{text-align:center;color:var(--m);font-size:13px;padding:8px}
+
+/* ===== Writing checker v2 ===== */
+.write-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.write-tools{display:flex;gap:8px;flex-wrap:wrap}
+.write-status{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:8px;margin:14px 0}
+.write-stat{padding:12px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.write-stat b{display:block;font-size:21px}.write-stat small{color:var(--m)}
+.wscore{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.18);margin:10px 0}
+.wscore strong{font-size:27px}.wscore small{color:var(--m)}
+.wtabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.wtab{font:inherit;color:var(--m);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 11px;cursor:pointer}.wtab.on{color:#fff;background:rgba(124,92,255,.42)}
+.wissues{display:grid;gap:8px}.wiss{padding:11px 12px;border-radius:15px;background:rgba(255,255,255,.055);border-left:4px solid #ff7a90}.wiss.warn{border-left-color:#fbbf24}.wiss.info{border-left-color:#22d3ee}.wiss.good{border-left-color:#6ee7a8}
+.wiss-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.wtag{font-size:11px;padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--m)}
+.wiss del{color:#ff8ca0;text-decoration-thickness:2px}.wiss ins{color:#8af0c0;text-decoration:none;font-weight:700}.wreason{display:block;color:var(--m);font-size:13px;margin-top:4px}.waction{margin-top:7px;font-size:13px;color:#cfe9ff}
+.wempty{padding:14px;border-radius:16px;background:rgba(110,231,168,.08);border:1px solid rgba(110,231,168,.2)}
+.wloading{opacity:.75}.wmeta{color:var(--m);font-size:13px}.wlegend{display:flex;gap:10px;flex-wrap:wrap;color:var(--m);font-size:12px;margin-top:8px}
+@media(max-width:560px){.write-status{grid-template-columns:repeat(2,1fr)}.wscore{align-items:flex-start}}
+@media(max-width:800px){.app{display:block;padding:12px 12px 110px}.nav{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));top:auto;flex-direction:row;z-index:20;border-radius:30px}.nav button{flex:1;padding:8px 0}.nav button span{font-size:20px}.nav small{font-size:10px}.top{padding:14px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="bg"><i></i><i></i><i></i></div>
+<div id="toast" class="glass"></div>
+<div class="app">
+<nav class="nav glass" id="nav"></nav>
+<main>
+<header class="top glass"><div class="logo">🎸</div><div><h1>Rockstar Tutor</h1><p>Learn English simply, step by step. Created especially for Ajmal by his brother Aseeb (Dev).</p></div></header>
+
+<section id="home" class="view on">
+<div class="glass card"><h2>Hello, Ajmal 👋</h2><p>Practise a little every day. Small steps make you a master!</p>
+<div class="stats"><span id="lv"></span><span id="xp"></span><span id="st"></span></div><div class="track"><i id="bar"></i></div>
+<div class="row"><input id="qa" placeholder="Fast ask: type any English doubt…" autocomplete="off"><button class="btn" id="qgo">Ask</button></div></div>
+<div class="grid" id="tiles"></div>
+<div class="glass card" id="wod"></div>
+</section>
+
+<section id="learn" class="view"><div class="glass card"><h2>📚 Learn English</h2><p>Pick a level. Start at Beginner and climb up to Master.</p><div id="lvs"></div></div><div id="lessons"></div></section>
+
+<section id="spell" class="view"><div class="glass card"><h2>✍️ Spelling Game</h2><p>Press Listen, then type the word you hear.</p>
+<div class="row"><button class="btn" id="sl">🔊 Listen</button><button class="chip" id="ss">🐢 Slow</button><button class="chip" id="sh">💡 Hint</button></div><br>
+<div class="row"><input id="sin" placeholder="Type the word here" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="btn" id="sc">Check</button><button class="chip" id="sn">Next ➜</button></div>
+<p id="shint" class="ex"></p><div id="sres" style="font-size:20px"></div></div></section>
+
+<section id="write" class="view"><div class="glass card">
+<div class="write-head"><div><h2>📝 Writing & Sentence Checker</h2><p>Checks spelling, grammar, punctuation, sentence structure, word choice and clarity using multiple layers — with exact corrections instead of vague warnings.</p></div><div class="write-tools"><button class="chip" id="wn">🔄 New topic</button><button class="chip" id="wtb">⏱️ 5-minute timer</button><b id="wtm"></b></div></div>
+<p id="wp"></p>
+<textarea id="wt" rows="9" placeholder="Write naturally here… Example: i dont know. he go to an office because its raining" spellcheck="false" autocapitalize="sentences"></textarea>
+<div class="wcheck-help"><span>🔬 Multi-layer check</span><span>🟥 Errors</span><span>🟨 Review</span><span>🟦 Suggestions</span><span>✓ Safe fixes only</span></div>
+<div class="wlegend"><span>🔴 Needs correction</span><span>🟡 Check carefully</span><span>🔵 Improvement</span><span>🟢 Good</span></div>
+<br><button class="btn" id="wc">🔎 Check my writing deeply</button></div>
+<div class="glass card" id="wres" hidden></div></section>
+
+<section id="speak" class="view"><div class="glass card"><h2>🎤 Speaking Practice</h2><p>Listen, then say the sentence. You get a score.</p><p class="big" id="ph"></p>
+<div class="row"><button class="btn" id="pl">🔊 Listen</button><button class="chip" id="ps">🐢 Slow</button><button class="btn" id="pm">🎙️ Say it</button><button class="chip" id="pn">Next ➜</button></div><p id="hr"></p></div></section>
+
+<section id="ai" class="view"><div class="glass card"><div class="row"><h2 style="margin:0;flex:1">🤖 AI Tutor</h2><button class="chip" id="vm">🔊 Voice mode: OFF</button></div>
+<p id="eng" style="color:var(--m);font-size:13px;margin:4px 0 8px"></p><div class="chat" id="cl"></div><div id="sug"></div>
+<div class="row" style="margin-top:10px"><input id="ci" placeholder="Ask in English or Manglish…" autocomplete="off"><button class="ic" id="cm" style="padding:10px 14px">🎙️</button><button class="btn" id="cs">Send</button></div></div></section>
+
+<footer>🎸 Rockstar Tutor · Made with ❤️ by Aseeb (Dev) for Ajmal</footer>
+</main></div>
+<script>
+/* ===== CONFIG: NO API key in this file. The key lives only on the server (.env). ===== */
+const CONFIG={API_URL:'/api/chat',STUDENT:'Ajmal'};let AI=false,NEED=false;
+const OFF="I am an artificial intelligence on an advanced website created by AseebDev, your brother. This is made for your character and your English skill building. Please ask me about English: grammar, spelling, speaking, writing or words! 😊";
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={xp:0,streak:0,last:''};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem('rt1')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('rt1',JSON.stringify(S))}catch(e){}};
+(function(){const t=new Date().toDateString();if(S.last!==t){const y=new Date(Date.now()-864e5).toDateString();S.streak=S.last===y?S.streak+1:1;S.last=t;save()}})();
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1800)}
+function xp(n){S.xp+=n;save();ui();toast('+'+n+' XP ⭐')}
+function ui(){$('#lv').textContent='Level '+(Math.floor(S.xp/100)+1);$('#xp').textContent=S.xp+' XP';$('#st').textContent='🔥 '+S.streak+' day'+(S.streak>1?'s':'');$('#bar').style.width=(S.xp%100)+'%'}
+
+/* ===== Navigation ===== */
+const TABS=[['home','🏠','Home'],['learn','📚','Learn'],['spell','✍️','Spell'],['write','📝','Write'],['speak','🎤','Speak'],['ai','🤖','AI Tutor']];
+$('#nav').innerHTML='<b class="pill"></b>'+TABS.map(t=>`<button data-go="${t[0]}" aria-label="${t[2]}"><span>${t[1]}</span><small>${t[2]}</small></button>`).join('');
+$('#tiles').innerHTML=[['learn','📚','Start Learning','Beginner to Master'],['spell','✍️','Spelling Game','Listen and type'],['write','📝','Check Writing','Fix your mistakes'],['speak','🎤','Speak Now','Say it, get a score'],['ai','🤖','Ask AI Tutor','Text or voice']].map(t=>`<button class="glass tile" data-go="${t[0]}"><span>${t[1]}</span><b>${t[2]}</b><small>${t[3]}</small></button>`).join('');
+function place(){const b=$('#nav button.on'),p=$('.pill');if(b)p.style.cssText=`width:${b.offsetWidth}px;height:${b.offsetHeight}px;transform:translate(${b.offsetLeft}px,${b.offsetTop}px)`}
+function go(id){$$('.view').forEach(v=>v.classList.toggle('on',v.id===id));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===id));place();scrollTo({top:0,behavior:'smooth'});if(id==='ai')setTimeout(()=>$('#ci').focus(),300)}
+addEventListener('resize',place);
+addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName)||e.ctrlKey||e.metaKey)return;if(e.key>='1'&&e.key<='6')go(TABS[e.key-1][0]);if(e.key==='/'){e.preventDefault();go('ai')}});
+
+/* ===== Voice ===== */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function say(t,r){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/[*_#`•]|[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu,''));const v=speechSynthesis.getVoices();u.voice=v.find(x=>x.lang==='en-IN')||v.find(x=>/^en-(US|GB)/.test(x.lang))||null;u.lang=u.voice?u.voice.lang:'en-US';u.rate=r||.95;speechSynthesis.speak(u)}
+function listen(cb,btn){if(!SR){toast('Voice input works in Chrome 🎙️');return}const r=new SR();r.lang='en-IN';r.onresult=e=>cb(e.results[0][0].transcript);r.onerror=()=>toast('Could not hear you. Try again');r.onend=()=>btn&&btn.classList.remove('rec');btn&&btn.classList.add('rec');try{r.start()}catch(e){}}
+
+/* ===== Lessons ===== */
+const LV={
+Beginner:[
+['am / is / are','Use am with I, is with he, she, it, and are with you, we, they.','I am Ajmal. She is happy. They are friends.',['She ___ my sister.',['am','is','are'],1]],
+['a / an','Use an before a, e, i, o, u sounds. Use a before other sounds.','a book, an apple, an hour',['___ umbrella',['a','an'],1]],
+['Greetings','Say Good morning before 12 pm, Good afternoon until 5 pm, and Good evening after that.','Good morning! How are you? I am fine, thank you.',['Best greeting at 8 am?',['Good night','Good morning','Good evening'],1]]],
+Basic:[
+['Present simple','Use it for habits and facts. After he, she, it add s or es to the verb.','I drink tea. He drinks tea. She goes to school.',['She ___ to school.',['go','goes','going'],1]],
+['in / on / at','at = exact time or point. on = days and surfaces. in = months, years and inside.','at 5 pm, on Monday, in July',['See you ___ Sunday.',['in','on','at'],1]],
+['Plurals','Add s. After s, x, ch, sh add es. Some are special: child, children.','one box, two boxes',['Plural of box?',['boxs','boxes','boxen'],1]]],
+Intermediate:[
+['Past simple','Use it for finished actions. Add ed, or use the irregular form: go, went.','Yesterday I went to the market.',['Yesterday I ___ a movie.',['see','saw','seen'],1]],
+['will / going to','will = decision now. am/is/are going to = plan.','I will help you. I am going to study tonight.',['I ___ study tonight. (plan)',['will','am going to','went to'],1]],
+['Present perfect','Use have or has + 3rd form of the verb for experience, or things that continue until now.','I have finished my work. She has lived here for 5 years.',['She ___ lived here for 5 years.',['have','has','is'],1]]],
+Advanced:[
+['If sentences','First: If + present, will. Second: If + past, would.','If it rains, I will stay home. If I had time, I would learn more.',['If I ___ time, I would learn more.',['have','had','will have'],1]],
+['Passive voice','Use be + 3rd form when the action is more important than the person.','The cake was made by her.',['The door ___ closed by him.',['was','were','has'],0]]],
+Master:[
+['Idioms','Idioms have a special meaning. They are not word for word.','The test was a piece of cake.',['"Piece of cake" means...',['very easy','very sweet'],0]],
+['Formal and casual','Use full forms in formal emails. Short forms are fine with friends.','Formal: I would like to request leave. Casual: Can I take a day off?',['Which is formal?',['Gimme a day off','I would like to request leave'],1]]]
+};
+let curLv='Beginner';const got=new Set();
+function renderLearn(){
+$('#lvs').innerHTML=Object.keys(LV).map((k,i)=>`<button class="chip ${k===curLv?'on':''}" data-lv="${k}">${i+1}. ${k}</button>`).join('');
+$('#lessons').innerHTML=LV[curLv].map((l,i)=>`<article class="glass card"><h3>${l[0]}</h3><p>${l[1]}</p><p class="ex">💬 ${l[2]} <button class="ic" data-say="${esc(l[2])}">🔊</button></p><details><summary>Try a quick quiz</summary><p><b>${l[3][0]}</b></p><div class="opts">${l[3][1].map((o,j)=>`<button class="chip" data-q="${curLv}|${i}|${j}">${o}</button>`).join('')}</div></details></article>`).join('')}
+
+/* ===== Spelling ===== */
+const W='receive|i before e, except after c;separate|there is a rat in sepARATe;definitely|it has finite inside;necessary|one collar, two sleeves: 1 c, 2 s;beautiful|beauty, change y to i, add ful;because|Big Elephants Can Always Understand Small Elephants;friend|a friend is there until the end;believe|you cannot believe a lie;tomorrow|one m, two r: to-mor-row;government|remember the n before ment;environment|en-vi-ron-ment, iron is inside;February|say Feb-ru-ary, the r is real;library|li-brar-y, not liberry;island|the s is silent;knowledge|silent k, then ledge;Wednesday|say Wed-nes-day;calendar|ends with ar;rhythm|Rhythm Helps Your Two Hips Move;exercise|ex-er-cise, with a c;restaurant|rest-au-rant;writing|one t, drop the e from write;different|dif-fer-ent;interesting|in-ter-est-ing;important|im-por-tant;successful|double c, double s;business|bus-i-ness'.split(';').map(x=>x.split('|'));
+let cw=W[Math.random()*W.length|0];
+function spNext(){cw=W[Math.random()*W.length|0];$('#sin').value='';$('#sres').innerHTML='';$('#shint').textContent='';say(cw[0],.8);$('#sin').focus()}
+function spCheck(){const a=$('#sin').value.trim().toLowerCase(),c=cw[0].toLowerCase();if(!a)return;
+if(a===c){$('#sres').innerHTML='<b class="okt">✅ Perfect! '+cw[0]+'</b>';xp(10)}
+else{let h='';for(let i=0;i<Math.max(a.length,c.length);i++)h+=`<span class="${a[i]===c[i]?'okt':'bad'}">${esc(a[i]||'_')}</span>`;
+$('#sres').innerHTML=`Your spelling: ${h}<br>Correct: <b>${cw[0]}</b><br>💡 ${cw[1]}`}}
+
+/* ===== Writing checker v2 ===== */
+const MS={recieve:'receive',recieves:'receives',recieved:'received',recieving:'receiving',definately:'definitely',definitly:'definitely',seperate:'separate',seperately:'separately',occured:'occurred',occuring:'occurring',untill:'until',wich:'which',becuase:'because',becouse:'because',beleive:'believe',belive:'believe',freind:'friend',tomorow:'tomorrow',tommorow:'tomorrow',goverment:'government',enviroment:'environment',libary:'library',wensday:'Wednesday',writting:'writing',writen:'written',diffrent:'different',intresting:'interesting',importent:'important',sucessful:'successful',buisness:'business',thier:'their',adress:'address',accomodate:'accommodate',neccessary:'necessary',excercise:'exercise',knowlege:'knowledge',calender:'calendar',resturant:'restaurant',beutiful:'beautiful',truely:'truly',realy:'really',finaly:'finally',comming:'coming',geting:'getting',runing:'running',begining:'beginning',sentance:'sentence',grammer:'grammar',speach:'speech',langauge:'language',acheive:'achieve',arguement:'argument',maintainance:'maintenance',suprise:'surprise',occurence:'occurrence',priviledge:'privilege',embarass:'embarrass',embarassed:'embarrassed',independant:'independent',responsibile:'responsible',succesful:'successful',publically:'publicly',basicly:'basically',becouse:'because',adresss:'address',seperation:'separation',reciept:'receipt',recieive:'receive',wierd:'weird',wierdly:'weirdly',untill:'until',acheive:'achieve',suprise:'surprise',enviromental:'environmental',experiance:'experience',knowlege:'knowledge',occurance:'occurrence',pronounciation:'pronunciation',pronounciation:'pronunciation',grammerly:'grammatically',responsiblity:'responsibility',availble:'available',probaly:'probably',actualy:'actually',especialy:'especially',usualy:'usually',definate:'definite',arguement:'argument',governer:'governor',beginer:'beginner',sucess:'success',succes:'success',langauge:'language',adress:'address',becouse:'because',recieve:'receive',wanna:'want to',gonna:'going to'};
+const CONTR={dont:"don't",doesnt:"doesn't",didnt:"didn't",isnt:"isn't",arent:"aren't",wasnt:"wasn't",werent:"weren't",hasnt:"hasn't",havent:"haven't",hadnt:"hadn't",wont:"won't",wouldnt:"wouldn't",couldnt:"couldn't",shouldnt:"shouldn't",mustnt:"mustn't",cant:"can't",couldnt:"couldn't",im:"I'm",ive:"I've",ill:"I'll",id:"I'd",youre:"you're",theyre:"they're",thats:"that's",whats:"what's",lets:"let's"};
+const V3={go:'goes',do:'does',have:'has',study:'studies',try:'tries',cry:'cries',fly:'flies',watch:'watches',wash:'washes',fix:'fixes',pass:'passes',kiss:'kisses',miss:'misses',teach:'teaches',catch:'catches',push:'pushes',mix:'mixes',buzz:'buzzes',say:'says',play:'plays',work:'works',live:'lives',like:'likes',want:'wants',need:'needs',make:'makes',take:'takes',come:'comes',know:'knows',think:'thinks',read:'reads',write:'writes',love:'loves',help:'helps',speak:'speaks',eat:'eats',drink:'drinks'};
+const BASE={went:'go',gone:'go',saw:'see',seen:'see',ate:'eat',eaten:'eat',took:'take',taken:'take',came:'come',come:'come',got:'get',gotten:'get',made:'make',had:'have',did:'do',was:'be',were:'be'};
+const MODALS='can|could|may|might|must|should|would|will|shall';
+const GR=[
+[/\b[A-Za-z']+\b/g,w=>{const k=w.toLowerCase();const g=MS[k];if(!g)return w;return /^[A-Z]/.test(w)?g[0].toUpperCase()+g.slice(1):g},'Spelling','error'],
+[/\b(i|im|ive|ill|id)\b/gi,w=>{const k=w.toLowerCase();return k==='i'?'I':(CONTR[k]||w)},'Capitalization/Contraction','error'],
+[/\b(dont|doesnt|didnt|isnt|arent|wasnt|werent|hasnt|havent|hadnt|wont|wouldnt|couldnt|shouldnt|mustnt|cant|youre|theyre|thats|whats|lets)\b/gi,w=>CONTR[w.toLowerCase()]||w,'Contraction','error'],
+[/\s{2,}/g,()=> ' ','Formatting','info'],
+[/\s+([,.!?;:])/g,(m,p)=>p,'Punctuation','error'],
+[/([,.!?;:])(?=[A-Za-z])/g,'$1 ','Punctuation','error'],
+[/\bi\b/g,()=> 'I','Capitalization','error'],
+[/\b(do|does|did)\s+(can|could|may|might|must|should|would|will|shall)\b/gi,(m,d,modal)=>modal,'Modal verb form','error'],
+[/\b(can|could|may|might|must|should|would|will|shall)\s+to\s+/gi,(m,modal)=>modal+' ','Modal verb form','error'],
+[/\b(a)\s+(apple|orange|elephant|egg|engine|idea|answer|animal|exam|example|email|office|hour|honest|interesting|important|easy|old)\b/gi,(m,a,w)=>'an '+w,'Articles','error'],
+[/\b(an)\s+(university|user|useful|usual|unique|European|one|once|unit|uniform)\b/gi,(m,a,w)=>'a '+w,'Articles','error'],
+[/\b(he|she|it)\s+(go|do|have|like|want|need|play|work|live|eat|drink|study|speak|make|take|come|know|think|watch|read|write|love|help|try|fly|cry|say)\b/gi,(m,p,v)=>p+' '+(V3[v.toLowerCase()]||v+'s'),'Subject–verb agreement','error'],
+[/\b(I|we|you|they)\s+is\b/gi,(m,p)=>p+(/^i$/i.test(p)?' am':' are'),'Subject–verb agreement','error'],
+[/\b(he|she|it)\s+are\b/gi,(m,p)=>p+' is','Subject–verb agreement','error'],
+[/\b(he|she|it)\s+don'?t\b/gi,(m,p)=>p+" doesn't",'Subject–verb agreement','error'],
+[/\b(I|we|you|they)\s+doesn'?t\b/gi,(m,p)=>p+" don't",'Subject–verb agreement','error'],
+[/\b(people|children|men|women|these|those)\s+is\b/gi,(m,p)=>p+' are','Subject–verb agreement','error'],
+[/\b(each|every|everyone|everybody|someone|somebody|nobody|everything|nothing)\s+(are|were|have|do)\b/gi,(m,p,v)=>p+' '+({are:'is',were:'was',have:'has',do:'does'})[v.toLowerCase()],'Subject–verb agreement','error'],
+[/\b(I|we|you|they)\s+was\b/gi,(m,p)=>p+' were','Subject–verb agreement','error'],
+[/\b(he|she|it)\s+were\b/gi,(m,p)=>p+' was','Subject–verb agreement','error'],
+[/\bI\s+am\s+(agree|understand|know|believe|think|like|want|need)\b/gi,(m,v)=>'I '+v,'Grammar','error'],
+[/\b(should|could|would|might|must)\s+of\b/gi,(m,p)=>p+' have','Grammar','error'],
+[/\b(didn't|did not)\s+(went|saw|ate|took|came|got|made|had|did)\b/gi,(m,d,v)=>d+' '+(BASE[v.toLowerCase()]||v),'Past tense','error'],
+[/\b(did|does|do)\s+(went|goes|saw|sees|ate|eats|took|takes|came|comes|got|gets|made|makes|had|has)\b/gi,(m,d,v)=>d+' '+(BASE[v.toLowerCase()]||v),'Verb form','error'],
+[/\bmore\s+better\b/gi,()=> 'better','Word choice','error'],[/\bmore\s+easier\b/gi,()=> 'easier','Word choice','error'],[/\bmost\s+best\b/gi,()=> 'best','Word choice','error'],
+[/\byour\s+welcome\b/gi,()=>"you're welcome",'Word choice','error'],
+[/\b(there|their|they're)\s+(is|are)\b/gi,(m,p,v)=>p.toLowerCase()==='their'?'there '+v:m,'Word choice','warn'],
+[/\b(its)\s+([a-z])/gi,(m)=>m,'Word choice','info'],
+[/\b(a lot)\s+of\b/gi,(m)=>m,'Word choice','info'],
+[/\bits\s+(raining|snowing|okay|fine|important|possible|going|coming|working|getting|happening)\b/gi,(m,v)=>"it's "+v,'Contraction/Word choice','error'],
+[/\b(there)\s+(are|is)\b/gi,(m)=>m,'Word choice','info']
+];
+function localFix(t){const issues=[];let o=t;
+// Context-aware learner typo rules. These are intentionally narrow so the checker
+// does not treat valid single letters/abbreviations as spelling errors.
+const CONTEXT_RULES=[
+  [/\b[wW](?=\s+(?:can|could|will|would|should|are|were|have|had|want|need|like|love|know|think|do|did)\b)/g,'We','Spelling / pronoun','error','A common missing-letter typo: “W/w” should be “We” when it is the subject before a verb.'],
+  [/\b[Ii]\s+(am|can|will|would|should|could|must|have|had|do|did)\b/g,(m,v)=>'I '+v,'Capitalization','error','The pronoun “I” is always capitalized.']
+];
+for(const [re,fn,label,severity,reason] of CONTEXT_RULES){o=o.replace(re,(...a)=>{const before=a[0],r=typeof fn==='function'?fn(...a):fn;if(r!==before)issues.push({type:label,severity,original:before,replacement:r,reason,suggestion:'Learn the complete subject word and check it before applying a correction.',safeFix:true});return r})}
+for(const [re,fn,label,severity] of GR){o=o.replace(re,(...a)=>{const before=a[0],r=typeof fn==='function'?fn(...a):before.replace(re,fn);if(r!==before)issues.push({type:label,severity,original:before.trim(),replacement:r.trim(),reason:label,safeFix:severity==='error'&&r.trim()!==before.trim()});return r})}
+o=o.replace(/\b([A-Za-z']+)\s+\1\b/gi,(m,w)=>{issues.push({type:'Repeated word',severity:'error',original:m,replacement:w,reason:'The same word is repeated consecutively.',safeFix:true});return w});
+// A sentence ending without punctuation is a review, not an automatic grammar error.
+const trim=o.trim();if(trim&&/[A-Za-z0-9'”)]$/.test(trim)&&/[A-Za-z]{3,}/.test(trim)){issues.push({type:'Punctuation',severity:'warn',original:trim.slice(trim.lastIndexOf(' ')+1),replacement:trim.slice(trim.lastIndexOf(' ')+1)+'.',reason:'A complete statement normally ends with punctuation.',safeFix:true})}
+o=o.replace(/(^|[.!?]\s+|\n\s*)([a-z])/g,(m,p,c)=>{const u=c.toUpperCase();if(u!==c)issues.push({type:'Capitalization',severity:'error',original:c,replacement:u,reason:'A new sentence should normally begin with a capital letter.',safeFix:true});return p+u});
+const chunks=trim.split(/[.!?]+/).filter(Boolean);chunks.forEach(ch=>{const wc=ch.trim().split(/\s+/).filter(Boolean).length;if(wc>35)issues.push({type:'Sentence structure',severity:'warn',original:ch.trim().slice(0,100)+'…',replacement:'Consider splitting this into 2 or more sentences.',reason:'This sentence is unusually long and may be difficult to read.',safeFix:false})});
+// Basic run-on detection when two independent clauses are joined without punctuation.
+o.split(/\n+/).forEach(line=>{if(/\b(and|but|so|because)\s+(i|he|she|we|they|it)\b/i.test(line)&&!/[.!?]/.test(line)){issues.push({type:'Sentence structure',severity:'warn',original:line.trim(),replacement:'Add punctuation or split the sentence.',reason:'Two clauses may be joined into a run-on sentence.',safeFix:false})}});
+// Remove contradictory/duplicate findings created by sequential passes. The
+// first precise correction wins; a smaller overlapping correction is suppressed.
+const finalIssues=[];const seenOriginal=new Set();for(const i of issues){const key=i.original.toLowerCase().replace(/\s+/g,' ');if(seenOriginal.has(key))continue;if(finalIssues.some(j=>j.safeFix&&j.original.length>i.original.length&&j.original.toLowerCase().includes(key)))continue;seenOriginal.add(key);finalIssues.push(i)}
+return{o,issues:finalIssues};}
+function normalizeIssue(i){return {...i,original:String(i.original||'').trim(),replacement:String(i.replacement||'').trim(),type:String(i.type||'Grammar'),severity:['error','warn','info'].includes(i.severity)?i.severity:'warn',safeFix:!!i.safeFix};}
+function mergeWritingIssues(local,remote){const out=[];const key=i=>normalizeIssue(i).original.toLowerCase().replace(/\s+/g,' ')+'|'+normalizeIssue(i).type.toLowerCase();for(const i of (remote||[])){const n=normalizeIssue(i);if(n.original&&n.replacement&&n.original!==n.replacement)out.push(n)}for(const i of (local||[])){const n=normalizeIssue(i);if(!n.original||n.original===n.replacement)continue;if(!out.some(x=>key(x)===key(n)||x.original.toLowerCase()===n.original.toLowerCase()))out.push(n)}return out.slice(0,60);}
+function applyWritingFixes(text,issues){
+  let out=text;
+  const usable=(issues||[]).filter(i=>i.safeFix&&i.original&&i.replacement&&i.original!==i.replacement)
+    .sort((a,b)=>b.original.length-a.original.length);
+  for(const i of usable){
+    const escaped=i.original.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const re=new RegExp(escaped,'i');
+    out=out.replace(re,i.replacement);
+  }
+  return out;
+}
+function fix(t){const r=localFix(t);return{o:r.o,is:r.issues.map(i=>[i.original,i.replacement,i.reason])}}
+let fixed='',wi=0,writeIssues=[],writeTab='all',lastWriteText='';
+const WP=['Write 3 sentences about your day.','Write about your best friend.','Write a short message to ask for leave.','Describe your favourite food.','Write about your dream job.','Write about something you learned this week.'];
+function wPrompt(){$('#wp').textContent='✏️ Topic: '+WP[wi++%WP.length]}
+function escAttr(x){return esc(String(x)).replace(/"/g,'&quot;')}
+function renderWResult(data,mode='local'){
+const e=$('#wres');e.hidden=false;writeIssues=(data.issues||[]).map(normalizeIssue);writeTab='all';lastWriteText=data.text||$('#wt').value;
+const counts={error:0,warn:0,info:0};writeIssues.forEach(i=>counts[i.severity]=(counts[i.severity]||0)+1);
+const words=lastWriteText.trim().split(/\s+/).filter(Boolean).length;const sentences=lastWriteText.split(/[.!?]+/).filter(x=>x.trim()).length;
+const penalty=counts.error*9+counts.warn*3+counts.info;const score=writeIssues.length?Math.max(0,Math.min(100,Math.round(100-penalty))):100;
+const corrected=applyWritingFixes(lastWriteText,writeIssues);fixed=corrected;
+e.innerHTML=`<div class="write-status"><div class="write-stat"><b>${score}</b><small>Writing score</small></div><div class="write-stat"><b>${words}</b><small>Words</small></div><div class="write-stat"><b>${sentences}</b><small>Sentences</small></div><div class="write-stat"><b>${writeIssues.length}</b><small>Findings</small></div></div>`+
+`<div class="wscore"><strong>${score>=90?'🟢':score>=75?'🟡':'🔴'}</strong><div><b>${score>=90?'Strong writing':score>=75?'Good, but review these points':'Needs correction'}</b><small>${mode==='ai'?'Local rules + AI context':'Local rules'} · only detected changes are shown below</small></div></div>`+
+`<div class="wpreview"><div><b>✍️ Your writing</b><pre>${esc(lastWriteText)}</pre></div><div><b>✨ Safe corrected version</b><pre>${esc(corrected)}</pre></div></div>`+
+`<div class="wtabs"><button class="wtab on" data-wtab="all">All (${writeIssues.length})</button><button class="wtab" data-wtab="error">Corrections (${counts.error})</button><button class="wtab" data-wtab="warn">Review (${counts.warn})</button><button class="wtab" data-wtab="info">Suggestions (${counts.info})</button></div><div class="wissues" id="wissues"></div>`+
+`<div class="row" style="margin-top:12px">${writeIssues.some(i=>i.safeFix)?'<button class="btn" id="fixall">✨ Apply safe fixes</button>':''}<button class="chip" id="copyfixed">📋 Copy corrected</button><button class="chip" id="copyai">📄 Copy full correction</button></div>`;
+renderWIssues();}
+function renderWIssues(){const box=$('#wissues');if(!box)return;const filtered=writeTab==='all'?writeIssues:writeIssues.filter(i=>(i.severity||'warn')===writeTab);if(!filtered.length){box.innerHTML='<div class="wempty">🎉 No findings in this category.</div>';return}box.innerHTML=filtered.slice(0,60).map((i,n)=>`<div class="wiss ${i.severity||'warn'}"><div class="wiss-top"><b>${esc(i.type||'Writing')}</b><span class="wtag">${esc(i.severity||'review')}${i.safeFix?' · safe fix':''}</span></div><div class="wchange"><span class="wlabel">Found</span><del>${esc(i.original||'')}</del><span>→</span><ins>${esc(i.replacement||'')}</ins></div><span class="wreason">${esc(i.reason||'Review this part of the sentence.')}</span>${i.suggestion?`<div class="waction">💡 ${esc(i.suggestion)}</div>`:''}</div>`).join('')}
+async function deepWritingCheck(text,local){try{const r=await fetch('/api/check-writing',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,local})});if(!r.ok)return null;const j=await r.json();if(!Array.isArray(j.issues))return null;return j}catch{return null}}
+async function wcheck(){const t=$('#wt').value;if(!t.trim()){toast('Write something first ✍️');return}const e=$('#wres');e.hidden=false;e.innerHTML='<p class="wloading">🔬 Layer 1: spelling & grammar → Layer 2: sentence structure → Layer 3: contextual review…</p>';const local=localFix(t);const ai=await deepWritingCheck(t,local.issues);const issues=mergeWritingIssues(local.issues,ai?.issues||[]);renderWResult({text:t,issues},ai?'ai':'local');if(!issues.length)xp(5)}
+let tm;function wtimer(){clearInterval(tm);let s=300;const e=$('#wtm');e.textContent='5:00';tm=setInterval(()=>{s--;e.textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');if(s<=0){clearInterval(tm);toast('⏰ Time is up! Check your writing')}},1000)}
+
+/* ===== Speaking ===== */
+const PH=['Good morning, how are you?','I would like a cup of tea, please.','Could you help me, please?','My name is Ajmal and I am learning English.','What time does the bus come?','Thank you very much for your help.','I am sorry, I did not understand.','Please speak slowly.','Nice to meet you.','Where is the nearest hospital?'];let pi=0;
+function phShow(){$('#ph').textContent=PH[pi];$('#hr').textContent=''}
+function tryPh(btn){listen(t=>{const f=s=>s.toLowerCase().replace(/[^a-z' ]/g,'').split(/\s+/).filter(Boolean),a=f(PH[pi]),h=f(t),p=Math.round(a.filter(w=>h.includes(w)).length/a.length*100);
+$('#hr').innerHTML=`You said: <b>${esc(t)}</b><br>Score: <b class="${p>=80?'okt':'bad'}">${p}%</b> ${p>=80?'🎉 Great!':'Try again. Speak slowly.'}`;if(p>=80)xp(10)},btn)}
+
+/* ===== AI Tutor (built-in brain + optional OpenAI) ===== */
+const D='confident|sure about yourself|She is confident when she speaks.;improve|to make better|I want to improve my English.;practice|to do again and again to get better|Practice every day.;fluent|able to speak easily and well|He is fluent in English.;borrow|to take something and give it back later|Can I borrow your pen?;lend|to give something for a short time|Please lend me your book.;achieve|to succeed in getting something|You can achieve your goal.;polite|showing good manners|He is always polite.;schedule|a plan of times for things|My schedule is full today.;delay|to make something late|The bus has a delay.;honest|telling the truth|Be honest with me.;curious|wanting to know more|Children are curious.;courage|strength to do hard things|It takes courage to speak.;grateful|feeling thankful|I am grateful for your help.;journey|a long trip|Learning is a journey.;patient|able to wait calmly|Be patient. You will learn.'.split(';').map(x=>x.split('|'));
+const KB=[
+['tense tenses','Tenses show WHEN something happens.\n• Present: I eat tea. (habit)\n• Past: I ate tea. (finished)\n• Future: I will eat tea. (later)\nAsk me about "present simple", "past simple", "future" or "perfect".'],
+['present simple habit routine',"Present simple = habits and facts.\nI/you/we/they + verb: I drink tea.\nHe/she/it + verb+s: She drinks tea.\nNo: don't / doesn't + base verb. He doesn't drink tea."],
+['past yesterday ago irregular',"Past simple = finished action.\nRegular: add ed (work → worked).\nIrregular: go → went, eat → ate, see → saw.\nNo: didn't + base verb. I didn't go."],
+['future will going tomorrow','Future:\n• will + verb (decision now): I will call you.\n• am/is/are going to + verb (plan): I am going to study.'],
+['perfect have has since','Present perfect = have/has + 3rd form.\nI have finished my work. (done, result now)\nShe has lived here for 5 years. (still true)'],
+['continuous progressive','Continuous = happening now: am/is/are + verb+ing.\nI am studying. She is cooking.'],
+['article articles','a = before a consonant sound (a book).\nan = before a vowel sound (an apple, an hour).\nthe = one special thing (the book on the table).'],
+['preposition prepositions','at = exact time or point: at 5 pm, at the bus stop.\non = days and surfaces: on Monday, on the table.\nin = months, years, inside: in July, in the room.'],
+['their there theyre its your youre then than affect effect confusing confused',"• their = belongs to them. there = place. they're = they are.\n• its = belongs to it. it's = it is.\n• your = belongs to you. you're = you are.\n• then = time. than = compare (taller than me).\n• affect = verb (to change). effect = noun (result)."],
+['spell spelling mistake mistakes','Spelling tips:\n1. Learn 5 words daily.\n2. Say it in parts: Wed-nes-day.\n3. Use tricks: necessary = 1 collar, 2 sleeves.\n4. Write it 3 times, cover it, test yourself.\n5. Play the Spell game every day.'],
+['speak speaking fluent fluency confidence shy fear','To speak well:\n1. Speak 10 minutes daily, even alone.\n2. Start with short sentences.\n3. Record your voice and listen.\n4. Mistakes are okay. They help you learn.\n5. Use the Speak tab and my Voice mode.'],
+['pronounce pronunciation accent','Listen first, then repeat. Use 🔊 and the slow button. Break words into parts: com-for-ta-ble. Say them again and again.'],
+['write writing paragraph essay email letter','Good writing:\n1. One idea in each paragraph.\n2. Short, clear sentences.\n3. Start: main idea. Middle: examples. End: summary.\n4. Read again and use the Write tab to check mistakes.'],
+['vocabulary word words','Learn 5 new words daily. Write one sentence for each word. Revise after 1 day and 1 week. Read and listen to English every day.'],
+['introduce introduction myself','Try this:\n"Hello, my name is ___. I am from ___. I am learning English to ___. In my free time, I like ___. Nice to meet you!"'],
+['plan routine daily study','30-minute daily plan:\n10 min Learn • 5 min Spell • 5 min Write • 5 min Speak • 5 min chat with me.'],
+['punctuation comma apostrophe',"Full stop (.) ends a sentence. Comma (,) is a small pause. Apostrophe: it's = it is, Ajmal's book = the book of Ajmal."],
+['learn start begin beginner roadmap method way',"How to learn English from zero:\n1. Learn tab: 1 lesson daily (start at Beginner).\n2. Spell tab: 5 words.\n3. Write tab: write 3 sentences, then check.\n4. Speak tab: say 3 sentences aloud.\n5. Ask me any doubt, in English or Manglish!"]];
+const EN=/english|grammar|sentence|noun|verb|adjective|adverb|pronoun|word|spell|speak|writ|vocab|pronounc|listen|read|tense|learn/;
+function brainEN(q){const l=q.toLowerCase().trim();
+if(/^(check|correct|fix)\s*:/.test(l)){const r=fix(q.replace(/^[^:]*:/,'').trim());return r.is.length?'✅ Corrected:\n"'+r.o+'"\n\n'+r.is.slice(0,6).map(i=>'• '+i[0]+' → '+i[1]+' ('+i[2]+')').join('\n'):'🎉 Your sentence looks correct!'}
+if(/^(hi|hello|hey|hai|salam|good (morning|afternoon|evening))\b/.test(l))return'Hello '+CONFIG.STUDENT+'! 👋 I am your English tutor. Ask me about grammar, spelling, speaking or writing.';
+if(/thank/.test(l))return"You're welcome! Keep practising. You are doing great! 🌟";
+if(/who (made|created|built|are)|your (creator|name)/.test(l))return'I am Rockstar Tutor AI 🎸. I was created by AseebDev, your brother, to build your character and English skills.';
+const T=l.replace(/'/g,'').split(/[^a-z]+/).filter(Boolean);if(/\ba\s*(\/|or|and)\s*an\b/.test(l))T.push('article');
+const d=/mean|define|what('?s| is)/.test(l)&&D.find(x=>T.includes(x[0]));if(d)return'📖 '+d[0]+' = '+d[1]+'.\nExample: '+d[2];
+let best=0,ans=null;KB.forEach(([k,a])=>{const s=k.split(' ').filter(w=>T.some(t=>t===w||(w.length>3&&t.startsWith(w)))).length;if(s&&s>=best){best=s;ans=a}});
+if(ans)return ans;
+return EN.test(l)?'Good question! In offline mode I know: tenses, a/an, in/on/at, spelling, speaking, writing and more. Try one of those, or type "check: your sentence". For unlimited answers, your brother can add an OpenAI key in the config.':OFF}
+/* ===== Manglish (Malayalam written in English letters) ===== */
+const nk=w=>w.toLowerCase().replace(/zh/g,'l').replace(/h/g,'').replace(/w/g,'v').replace(/(.)\1+/g,'$1');
+const mk=x=>{const o={};x.split(',').forEach(y=>{const[a,b]=y.split(':');o[nk(a)]=b});return o};
+const ST=mk('padik:learn,padip:learn,samsar:speak,sambas:speak,prasang:speak,elut:write,vayik:read,kelk:listen,ucaran:pronounce,ucar:pronounce,artham:meaning,thettu:mistake,bhayam:fear,nanam:shy fear,dhairya:confidence,vishvas:confidence,bhoothakal:past tense,vartaman:present tense,bhavi:future tense,kalam:tense,kalang:tense,vyakaran:grammar,vakya:sentence,vakku:word,padam:word,akshar:spell,udaharan:example,vyathyas:difference,sahay:help,vishad:explain,vivar:explain,paray:explain,paranj:explain,parich:introduce,dinav:daily,dinam:daily,eluppa:simple,kuzhapp:confused,enthuk:why,sukham:hello,sugham:hello,namaskar:hello,nanni:thanks,enik:me,ninak:you,ninte:you,njan:me,seriy:correct,sariy:correct');
+const WM=mk('vazhi:method way,angane:how,angine:how,ingane:how,ingine:how,engane:how,enganeya:how,entha:what,enthanu:what,enthu:what,enthinu:why,eppol:when,eppo:when,aara:who,aaru:who,seri:correct,sari:correct,thettaanu:mistake,thettayi:mistake');
+const MK=new Set('njan,ente,ninte,nee,ni,anu,aanu,ano,aano,anne,alle,illa,undo,undu,ennu,oru,onnu,ithu,athu,ippol,ippo,vendi,venda,venam,vendam,ennal,pinne,valare,nannayi,nalla,kurachu,ethra,evide,ivide,avide,cheyyam,cheyyamo,cheyyu,cheyyan,cheyyanam,akko,aakko,aakku'.split(',').map(nk));
+const PB=[['sukhamano','How are you?'],['sukhamanu','I am fine, thank you.'],['nanni','Thank you.'],['kshamikkanam','I am sorry. / Excuse me.'],['enikk manassilayilla','I did not understand.'],['onnu koodi parayamo','Could you say that again, please?'],['enikk ariyilla','I do not know.'],['enikk sahayam venam','I need help.'],['ente peru','My name is ___.'],['ethra vila','How much is this?'],['evideya pokunnath','Where are you going?'],['enikk vishakkunnu','I am hungry.'],['enikk dahikkunnu','I am thirsty.'],['subha prabhatham','Good morning.'],['subha rathri','Good night.']].map(([m,e])=>[nk(m.replace(/ /g,'')),e,m]);
+const KM=["Tense ennal oru kaaryam nadakkunna samayam kaanikkunna rithi aanu: ippol (present), kazhinju (past), ini (future).",
+"Present simple ennal sheelangalum sathyangalum parayaan use cheyyunnu. He/she/it vannaal verb-inte koode s/es cherkkanam.",
+"Past simple ennal kazhinju poya kaaryam. Mikka verb-inum 'ed' cherkkanam; chilathinu maattam undu (go → went).",
+"Future ennal ini nadakkaan pokunna kaaryam. Pettennu theerumaanikkunnath 'will', munne plan cheythath 'going to'.",
+"Present perfect = have/has + 3rd form. Kazhinja oru kaaryathinte phalam ippozhum undenkil ithu use cheyyum.",
+"Continuous ennal ippol nadannu kondirikkunna kaaryam: am/is/are + verb+ing.",
+"'a' consonant sound-inte munpu, 'an' vowel sound-inte munpu, 'the' oru particular kaaryam parayumbol upayogikkum.",
+"in / on / at ennathu sthalavum samayavum kaanikkunna chinna vaakkukal aanu.",
+"Ee vaakkukal pala aalkkarum thettaayi upayogikkunnavayaanu. Vyathyasam ingane:",
+"Spelling thettaathirikkaan ee vazhikal nokku:",
+"Samsarikkaan bayam venda. Ee tips nokku:",
+"Uccharanam sheriyaakkaan: aadyam kelkku, pinne ettu parayu.",
+"Nalla ezhuthinu ee kaaryangal sradhikku:",
+"Puthiya vaakkukal padikkaan:",
+"Swayam parichayappeduthaan ee vaakyangal upayogikku:",
+"Dinavum 30 minute mathi. Ee plan nokku:",
+"Punctuation chihnangal engane upayogikkam ennu nokku:",
+"English padikkaan njan vazhi parayaam. Dinavum 30 minute mathi, pettennu progress kaanaam!"];
+const HELPM='Sheri Ajmal! Enthaa doubt? Ingane chodikkam:\n• tense enthanu?\n• a / an eppol use cheyyum?\n• enikk samsarikkan bayam aanu\n• ithu sheriyano: he go to school\n• "enikk vishakkunnu" english-il engane parayum?';
+const OFFM="Njan oru artificial intelligence aanu. Ee advanced website undakkiyathu AseebDev, ninte brother aanu — ninte character-um English skill-um valarthaan vendi. English-ine kurichu chodikku! 😊";
+let SP='';
+function kbIdx(T){let b=0,x=-1;KB.forEach(([k],i)=>{const n=k.split(' ').filter(w=>T.some(t=>t===w||(w.length>3&&t.startsWith(w)))).length;if(n&&n>=b){b=n;x=i}});return x}
+function brain(q){const l=q.toLowerCase(),T0=l.replace(/'/g,'').split(/[^a-z]+/).filter(Boolean),kw=[];let hit=0;
+T0.forEach(t=>{const k=nk(t);if(WM[k]){kw.push(...WM[k].split(' '));hit+=2}else{let m=0;for(const z in ST)if(k.startsWith(z)){kw.push(...ST[z].split(' '));hit+=2;m=1;break}if(!m&&MK.has(k))hit++}});
+return hit>=2?manglish(q,l,T0,kw):brainEN(q)}
+function manglish(q,l,T0,kw){const T=T0.concat(kw),has=w=>kw.includes(w),ci=q.indexOf(':'),sq=nk(l.replace(/[^a-z]/g,''));
+if(/\ba\s*(\/|,|or|and)\s*an\b/.test(l))T.push('article');
+if((has('correct')||has('mistake')||/check|fix/.test(l))&&ci>0){const s=fix(q.slice(ci+1).trim());SP=s.o;return s.is.length?'✅ Sheri aakkiyath:\n"'+s.o+'"\n\n'+s.is.slice(0,6).map(i=>'• '+i[0]+' → '+i[1]+' ('+i[2]+')').join('\n'):'🎉 Nee ezhuthiyath sheriyaanu! Kollaam!'}
+const pb=/english|how/.test(l+' '+kw.join(' '))&&PB.find(p=>sq.includes(p[0]));
+if(pb){SP=pb[1];return'English-il ingane parayam:\n👉 '+pb[1]+'\n(Manglish: '+pb[2]+')\n\nIthu Speak tab-il parayaan practice cheyyu! 🎤'}
+if(has('thanks'))return'Sandhosham Ajmal! 😊 Dinavum 10 minute practice cheythaal nee pettennu master aakum. 🌟';
+if(has('hello'))return'Namaskaram Ajmal! 👋 Njan ninte English tutor aanu. English-il ethu doubt-um Manglish-il chodichaal mathi. Udaharanam: "tense enthanu?"';
+if(has('who'))return'Njan Rockstar Tutor AI aanu 🎸. Ninte brother AseebDev aanu enne undakkiyath, ninte character-um English skill-um valarthaan vendi.';
+if(has('meaning')){const d=D.find(x=>T0.includes(x[0]));if(d){SP=d[0]+'. '+d[1]+'. '+d[2];return'📖 '+d[0]+' — artham: '+d[1]+'.\nUdaharanam: '+d[2]}}
+const i=kbIdx(T);if(i>=0){SP=KB[i][1];return KM[i]+'\n\n'+KB[i][1]}
+if(has('help')||has('explain')||T0.includes('help'))return HELPM;
+return EN.test(l+' '+kw.join(' '))?'Nalla chodyam! Ippol offline mode-il enikk ariyaavunnath: tense, a/an, in/on/at, spelling, speaking, writing. Athil onnu chodikku, allenkil "check: ninte sentence" ennu type cheyyu. Kooduthal chodyangalkku Aseeb-ine AI server set cheyyan parayu.':OFFM}
+const hist=[];let vm=false;
+function addMsg(t,who,sp){const d=document.createElement('div');d.className='m '+who;d.textContent=t;if(who==='b'){const b=document.createElement('button');b.className='ic';b.textContent='🔊';b.onclick=()=>say(sp||t);d.append(' ',b)}$('#cl').append(d);$('#cl').scrollTop=1e5;return d}
+async function gpt(q){let c='';try{c=localStorage.getItem('rtc')||''}catch(e){}
+if(NEED&&!c){c=prompt('Enter your access code')||'';try{localStorage.setItem('rtc',c)}catch(e){}}
+const r=await fetch(CONFIG.API_URL,{method:'POST',headers:{'Content-Type':'application/json','x-access-code':c},body:JSON.stringify({messages:[...hist.slice(-8),{role:'user',content:q}]})});
+if(r.status===401){try{localStorage.removeItem('rtc')}catch(e){}toast('Wrong access code 🔒');throw 401}
+if(!r.ok)throw 0;return(await r.json()).reply}
+async function ask(q){q=q.trim();if(!q)return;go('ai');addMsg(q,'u');$('#ci').value='';$('#qa').value='';const ty=addMsg('● ● ●','typ');let a;
+try{a=AI?await gpt(q):(await new Promise(r=>setTimeout(r,450)),brain(q))}catch(e){if(e!==401){AI=false;$('#eng').textContent='Built-in tutor mode (AI server not reachable)'}a=brain(q)}
+ty.remove();hist.push({role:'user',content:q},{role:'assistant',content:a});const sp=SP||a;SP='';addMsg(a,'b',sp);if(vm)say(sp);xp(2)}
+
+/* ===== Wire up ===== */
+document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;
+if(t.dataset.go)go(t.dataset.go);
+else if(t.dataset.lv){curLv=t.dataset.lv;renderLearn()}
+else if(t.dataset.q){const[l,i,j]=t.dataset.q.split('|'),ok=LV[l][i][3][2]==j;t.classList.add(ok?'ok':'bad');if(ok&&!got.has(l+i)){got.add(l+i);xp(10)}}
+else if(t.dataset.say)say(t.dataset.say,.9);
+else if(t.dataset.ask)ask(t.dataset.ask);});
+$('#sl').onclick=()=>say(cw[0],.9);$('#ss').onclick=()=>say(cw[0],.5);$('#sh').onclick=()=>$('#shint').textContent='💡 '+cw[1];$('#sc').onclick=spCheck;$('#sn').onclick=spNext;$('#sin').onkeydown=e=>{if(e.key==='Enter')spCheck()};
+$('#wc').onclick=wcheck;
+$('#wres').addEventListener('click',e=>{const b=e.target.closest('[data-wtab]');if(b){writeTab=b.dataset.wtab;document.querySelectorAll('.wtab').forEach(x=>x.classList.toggle('on',x===b));renderWIssues()} if(e.target.id==='fixall'){const corrected=applyWritingFixes(lastWriteText,writeIssues);$('#wt').value=corrected;toast('✨ Safe fixes applied — checking again');wcheck()} if(e.target.id==='copyfixed'){navigator.clipboard?.writeText(applyWritingFixes(lastWriteText,writeIssues));toast('📋 Safe corrected version copied')} if(e.target.id==='copyai'){const corrected=applyWritingFixes(lastWriteText,writeIssues);navigator.clipboard?.writeText(corrected);toast('📄 Corrected version copied')}});$('#wn').onclick=wPrompt;$('#wtb').onclick=wtimer;
+$('#pl').onclick=()=>say(PH[pi],.95);$('#ps').onclick=()=>say(PH[pi],.55);$('#pm').onclick=e=>tryPh(e.currentTarget);$('#pn').onclick=()=>{pi=(pi+1)%PH.length;phShow()};
+$('#cs').onclick=()=>ask($('#ci').value);$('#ci').onkeydown=e=>{if(e.key==='Enter')ask($('#ci').value)};
+$('#cm').onclick=e=>listen(t=>{$('#ci').value=t;if(vm)ask(t)},e.currentTarget);
+$('#vm').onclick=e=>{vm=!vm;e.currentTarget.classList.toggle('on',vm);e.currentTarget.textContent='🔊 Voice mode: '+(vm?'ON':'OFF');if(vm)say('Voice mode is on. Ask me anything!')};
+$('#qgo').onclick=()=>ask($('#qa').value);$('#qa').onkeydown=e=>{if(e.key==='Enter')ask($('#qa').value)};
+$('#sug').innerHTML=['When to use a / an?','Difference between their and there','English padikkan help cheyyamo?','Enikk samsarikkan bayam aanu','Tense enthanu?','Ithu sheriyano: i dont know. he go to a office','Enikk vishakkunnu ennu english-il engane parayum?'].map(s=>`<button class="chip" data-ask="${esc(s)}">${esc(s)}</button>`).join('');
+$('#eng').textContent='Built-in tutor mode (works offline)';
+fetch('/api/health').then(r=>r.json()).then(j=>{if(j.ai){AI=true;NEED=!!j.code;$('#eng').textContent='Smart mode: AI tutor connected'}}).catch(()=>{});
+const w=D[new Date().getDate()%D.length];
+$('#wod').innerHTML=`<small>⭐ Word of the day</small><div class="big">${w[0]} <button class="ic" data-say="${w[0]}. ${w[1]}. ${esc(w[2])}">🔊</button></div><p>${w[1]}</p><p class="ex">💬 ${w[2]}</p>`;
+ui();renderLearn();phShow();wPrompt();
+addMsg('Hello '+CONFIG.STUDENT+'! 👋 I am your English tutor. Type your doubt in English or Manglish (e.g. "tense enthanu?"), or press 🎙️ and speak. Turn on Voice mode to hear my answers.','b');
+requestAnimationFrame(()=>go('home'));
+</script></body></html>
